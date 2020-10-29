@@ -183,81 +183,89 @@ class _LoginScreenState extends State<LoginScreen> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
-                AnimatedContainer(
-                  width: widthIcon,
-                  duration: Duration(seconds: 1),
-                  curve: Curves.linear,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: <Widget>[
-                      SocialButton(
-                        imageName: Assets.icons.google,
-                        margin: EdgeInsets.only(left: 30.0),
-                      ),
-                      SocialButton(
-                        imageName: Assets.icons.facebook,
-                        margin: EdgeInsets.only(right: 30.0),
-                      ),
-                    ],
-                  ),
-                ),
-                InkWell(
-                  onTap: _onGoToRegister,
+                Flexible(
                   child: AnimatedContainer(
-                    height: 65.0,
-                    width: width,
-                    duration: Duration(milliseconds: 1000),
+                    width: widthIcon,
+                    duration: Duration(seconds: 1),
+                    curve: Curves.linear,
                     child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: <Widget>[
-                        Container(
-                          margin: EdgeInsets.only(left: 10),
-                          child: Icon(Icons.arrow_back_ios,
-                              color: context.colorScheme.onPrimary),
+                        Flexible(
+                          child: SocialButton(
+                            imageName: Assets.icons.google,
+                            margin: EdgeInsets.only(left: 30.0),
+                          ),
                         ),
-                        Container(
-                          margin: EdgeInsets.only(left: 10),
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: <Widget>[
-                              Container(
-                                child: AutoSizeText(
-                                  Strings.login.dontHaveAccount,
-                                  textAlign: TextAlign.end,
-                                  minFontSize: 8,
-                                  style: TextStyle(
-                                    color: context.colorScheme.onPrimary
-                                        .withOpacity(0.9),
-                                    fontWeight: FontWeight.w400,
-                                  ),
-                                ),
-                              ),
-                              SizedBox(height: 5),
-                              Container(
-                                child: Text(
-                                  Strings.login.registerNow,
-                                  textAlign: TextAlign.end,
-                                  style: TextStyle(
-                                    fontSize: 16,
-                                    letterSpacing: 1,
-                                    color: context.colorScheme.onPrimary
-                                        .withOpacity(0.9),
-                                    fontWeight: FontWeight.w600,
-                                  ),
-                                ),
-                              ),
-                            ],
+                        Expanded(
+                          child: SocialButton(
+                            imageName: Assets.icons.facebook,
+                            margin: EdgeInsets.only(right: 30.0),
                           ),
                         ),
                       ],
                     ),
-                    curve: Curves.linear,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.only(
-                        bottomLeft: Radius.circular(40),
-                        topLeft: Radius.circular(40),
+                  ),
+                ),
+                Expanded(
+                  child: InkWell(
+                    onTap: _onGoToRegister,
+                    child: AnimatedContainer(
+                      height: 65.0,
+                      width: width,
+                      duration: Duration(milliseconds: 1000),
+                      child: Row(
+                        children: <Widget>[
+                          Container(
+                            margin: EdgeInsets.only(left: 10),
+                            child: Icon(Icons.arrow_back_ios,
+                                color: context.colorScheme.onPrimary),
+                          ),
+                          Container(
+                            margin: EdgeInsets.only(left: 10),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: <Widget>[
+                                Container(
+                                  child: AutoSizeText(
+                                    Strings.login.dontHaveAccount,
+                                    textAlign: TextAlign.end,
+                                    minFontSize: 8,
+                                    style: TextStyle(
+                                      color: context.colorScheme.onPrimary
+                                          .withOpacity(0.9),
+                                      fontWeight: FontWeight.w400,
+                                    ),
+                                  ),
+                                ),
+                                SizedBox(height: 5),
+                                Container(
+                                  child: Text(
+                                    Strings.login.registerNow,
+                                    textAlign: TextAlign.end,
+                                    style: TextStyle(
+                                      fontSize: 16,
+                                      letterSpacing: 1,
+                                      color: context.colorScheme.onPrimary
+                                          .withOpacity(0.9),
+                                      fontWeight: FontWeight.w600,
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
                       ),
-                      color: context.colorScheme.primaryVariant,
+                      curve: Curves.linear,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.only(
+                          bottomLeft: Radius.circular(40),
+                          topLeft: Radius.circular(40),
+                        ),
+                        color: context.colorScheme.primaryVariant,
+                      ),
                     ),
                   ),
                 ),

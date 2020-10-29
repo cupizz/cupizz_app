@@ -169,84 +169,92 @@ class RegisterScreenState extends State<RegisterScreen> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
-                InkWell(
-                  onTap: _backToLogin,
+                Flexible(
+                  child: InkWell(
+                    onTap: _backToLogin,
+                    child: AnimatedContainer(
+                      height: 65.0,
+                      width: width,
+                      duration: Duration(milliseconds: 1000),
+                      curve: Curves.linear,
+                      child: Row(
+                        children: <Widget>[
+                          Container(
+                            margin: EdgeInsets.only(left: 10),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: <Widget>[
+                                Container(
+                                  child: Text(
+                                    Strings.register.haveAccount,
+                                    textAlign: TextAlign.end,
+                                    style: TextStyle(
+                                      fontSize: 14,
+                                      letterSpacing: 1,
+                                      color: context.colorScheme.onPrimary
+                                          .withOpacity(0.9),
+                                      fontWeight: FontWeight.w400,
+                                    ),
+                                  ),
+                                ),
+                                SizedBox(height: 5),
+                                Container(
+                                  child: Text(
+                                    Strings.register.loginNow,
+                                    textAlign: TextAlign.end,
+                                    style: TextStyle(
+                                      fontSize: 16,
+                                      letterSpacing: 1,
+                                      color: context.colorScheme.onPrimary
+                                          .withOpacity(0.9),
+                                      fontWeight: FontWeight.w600,
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          Container(
+                            margin: EdgeInsets.only(left: 10),
+                            child: Icon(
+                              Icons.arrow_forward_ios,
+                              color: context.colorScheme.onPrimary,
+                            ),
+                          ),
+                        ],
+                      ),
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.only(
+                            bottomRight: Radius.circular(40),
+                            topRight: Radius.circular(40),
+                          ),
+                          color: context.colorScheme.primaryVariant),
+                    ),
+                  ),
+                ),
+                Expanded(
                   child: AnimatedContainer(
-                    height: 65.0,
-                    width: width,
-                    duration: Duration(milliseconds: 1000),
+                    width: widthIcon,
+                    duration: Duration(seconds: 1),
                     curve: Curves.linear,
                     child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: <Widget>[
-                        Container(
-                          margin: EdgeInsets.only(left: 10),
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: <Widget>[
-                              Container(
-                                child: Text(
-                                  Strings.register.haveAccount,
-                                  textAlign: TextAlign.end,
-                                  style: TextStyle(
-                                    fontSize: 14,
-                                    letterSpacing: 1,
-                                    color: context.colorScheme.onPrimary
-                                        .withOpacity(0.9),
-                                    fontWeight: FontWeight.w400,
-                                  ),
-                                ),
-                              ),
-                              SizedBox(height: 5),
-                              Container(
-                                child: Text(
-                                  Strings.register.loginNow,
-                                  textAlign: TextAlign.end,
-                                  style: TextStyle(
-                                    fontSize: 16,
-                                    letterSpacing: 1,
-                                    color: context.colorScheme.onPrimary
-                                        .withOpacity(0.9),
-                                    fontWeight: FontWeight.w600,
-                                  ),
-                                ),
-                              ),
-                            ],
+                        Flexible(
+                          child: SocialButton(
+                            imageName: Assets.icons.google,
+                            margin: EdgeInsets.only(left: 30.0),
                           ),
                         ),
-                        Container(
-                          margin: EdgeInsets.only(left: 10),
-                          child: Icon(
-                            Icons.arrow_forward_ios,
-                            color: context.colorScheme.onPrimary,
+                        Expanded(
+                          child: SocialButton(
+                            imageName: Assets.icons.facebook,
+                            margin: EdgeInsets.only(right: 30.0),
                           ),
                         ),
                       ],
                     ),
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.only(
-                          bottomRight: Radius.circular(40),
-                          topRight: Radius.circular(40),
-                        ),
-                        color: context.colorScheme.primaryVariant),
-                  ),
-                ),
-                AnimatedContainer(
-                  width: widthIcon,
-                  duration: Duration(seconds: 1),
-                  curve: Curves.linear,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: <Widget>[
-                      SocialButton(
-                        imageName: Assets.icons.google,
-                        margin: EdgeInsets.only(left: 30.0),
-                      ),
-                      SocialButton(
-                        imageName: Assets.icons.facebook,
-                        margin: EdgeInsets.only(right: 30.0),
-                      ),
-                    ],
                   ),
                 ),
               ],
