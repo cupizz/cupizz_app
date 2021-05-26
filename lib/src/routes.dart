@@ -58,7 +58,6 @@ final List<GetPage> getPages = [
   GetPage(name: Routes.friends, page: () => FriendPageV2()),
   GetPage(name: Routes.anonymousChat, page: () => AnonymousChatScreen()),
   GetPage(name: Routes.incomingCall, page: () => InComingCallScreen()),
-  GetPage(name: Routes.inCall, page: () => InCallScreen()),
   // Edit-screens
   GetPage(name: Routes.editAge, page: () => EditAgeScreen()),
   GetPage(name: Routes.editDrink, page: () => EditDrinkScreen()),
