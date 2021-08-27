@@ -24,7 +24,7 @@ class SuperLikeButtonState extends State<SuperLikeButton> {
 
   void resetTimer() {
     _timer?.cancel();
-    _timer = Timer.periodic(5.seconds, (timer) {
+    _timer = Timer.periodic(4.seconds, (timer) {
       showRemain();
     });
   }

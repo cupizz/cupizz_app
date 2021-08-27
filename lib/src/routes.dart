@@ -23,8 +23,8 @@ class Routes {
   static const createPost = '/post/create';
   static const friends = '/likes';
   static const anonymousChat = '/anonymous-chat';
-  static const incomingCall = 'incomming-call';
-  static const inCall = 'in-call';
+  static const incomingCall = '/incomming-call';
+  static const inCall = '/in-call';
 
   static const editAge = '/profile/edit/age';
   static const editDrink = '/profile/edit/drink';

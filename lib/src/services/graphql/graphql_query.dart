@@ -13,7 +13,7 @@ extension GraphqlQuery on GraphqlService {
   Future<int?> remainingSuperLikeQuery() async {
     final result = await query(QueryOptions(
       document: gql('{ me { data { remainingSuperLike } } }'),
-      fetchPolicy: FetchPolicy.networkOnly,
+      fetchPolicy: FetchPolicy.noCache,
     ));
     return result.data!['me']['data']['remainingSuperLike'];
   }

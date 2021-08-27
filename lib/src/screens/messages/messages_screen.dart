@@ -115,18 +115,18 @@ class _MessagesScreenState extends State<MessagesScreen> {
                   ),
                 ),
               ),
-              actions: [
-                if (model.conversation != null)
-                  IconButton(
-                      icon: Icon(
-                        CupertinoIcons.videocam_fill,
-                        color: context.colorScheme.onBackground,
-                      ),
-                      onPressed: () {
-                        Momentum.controller<CallController>(context)
-                            .call(conversation: model.conversation);
-                      }),
-              ],
+              // actions: [
+              //   if (model.conversation != null)
+              //     IconButton(
+              //         icon: Icon(
+              //           CupertinoIcons.videocam_fill,
+              //           color: context.colorScheme.onBackground,
+              //         ),
+              //         onPressed: () {
+              //           Momentum.controller<CallController>(context)
+              //               .call(conversation: model.conversation);
+              //         }),
+              // ],
             ),
             body: MessagesScreenWidget(),
           );
