@@ -24,7 +24,7 @@ class SuperLikeButtonState extends State<SuperLikeButton> {
 
   void resetTimer() {
     _timer?.cancel();
-    _timer = Timer.periodic(5.seconds, (timer) {
+    _timer = Timer.periodic(4.seconds, (timer) {
       showRemain();
     });
   }
@@ -50,7 +50,7 @@ class SuperLikeButtonState extends State<SuperLikeButton> {
     return MomentumBuilder(
         controllers: [CurrentUserController],
         builder: (context, snapshot) {
-          final model = snapshot<CurrentUserModel>()!;
+          final model = snapshot<CurrentUserModel>();
           return GestureDetector(
             onTap: model.currentUser!.getRemainingSuperLike > 0
                 ? widget.onPressed as void Function()?

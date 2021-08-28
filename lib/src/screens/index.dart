@@ -8,4 +8,3 @@ export 'user/user_screen.dart';
 export 'user_setting/user_setting_screen.dart';
 export 'anonymous_chat/anonymous_chat_screen.dart';
 export 'incoming_call/incoming_call_screen.dart';
-export 'in_call/in_call_screen.dart';

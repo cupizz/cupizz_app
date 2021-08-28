@@ -10,8 +10,8 @@ class RegisterScreen extends StatefulWidget {
 class RegisterScreenState extends State<RegisterScreen> {
   var top = FractionalOffset.topCenter;
   var bottom = FractionalOffset.bottomCenter;
-  double width = 400.0;
-  double widthIcon = 200.0;
+  double width = 0.5;
+  double widthIcon = 0.45;
   TextEditingController name = TextEditingController();
   TextEditingController email = TextEditingController();
   TextEditingController password = TextEditingController();
@@ -32,7 +32,8 @@ class RegisterScreenState extends State<RegisterScreen> {
     super.initState();
     Future.delayed(Duration(milliseconds: 200), () {
       setState(() {
-        width = 190.0;
+        width = 0.5;
+        widthIcon = 0.45;
       });
     });
   }
@@ -46,7 +47,7 @@ class RegisterScreenState extends State<RegisterScreen> {
       ),
     );
     setState(() {
-      width = 500;
+      width = 0.7;
       widthIcon = 0;
     });
   }
@@ -103,7 +104,7 @@ class RegisterScreenState extends State<RegisterScreen> {
                         validator: Validator.name,
                         onChanged: (v) {
                           Momentum.controller<AuthController>(context)
-                              .model!
+                              .model
                               .update(nickname: v);
                         },
                         focusNode: nameFocus,
@@ -122,7 +123,7 @@ class RegisterScreenState extends State<RegisterScreen> {
                         focusNode: emailFocus,
                         onChanged: (v) {
                           Momentum.controller<AuthController>(context)
-                              .model!
+                              .model
                               .update(email: v);
                         },
                       ),
@@ -140,7 +141,7 @@ class RegisterScreenState extends State<RegisterScreen> {
                         validator: Validator.password,
                         onChanged: (v) {
                           Momentum.controller<AuthController>(context)
-                              .model!
+                              .model
                               .update(password: v);
                         },
                       ),
@@ -191,7 +192,7 @@ class RegisterScreenState extends State<RegisterScreen> {
                   onTap: _backToLogin,
                   child: AnimatedContainer(
                     height: 65.0,
-                    width: width,
+                    width: width * size.width,
                     duration: Duration(milliseconds: 1000),
                     curve: Curves.linear,
                     decoration: BoxDecoration(
@@ -250,7 +251,7 @@ class RegisterScreenState extends State<RegisterScreen> {
                   ),
                 ),
                 AnimatedContainer(
-                  width: widthIcon,
+                  width: widthIcon * size.width,
                   duration: Duration(seconds: 1),
                   curve: Curves.linear,
                   child: Row(
