@@ -150,6 +150,10 @@ class CommentBottomSheet {
                                     post, inputController.text);
                                 inputController.clear();
                                 await sheetController.scrollTo(0);
+
+                                // @Todo: handle temperature fix bug not render first comment
+                                FocusScope.of(context)
+                                    .requestFocus(FocusNode());
                               } finally {
                                 stopLoading();
                               }

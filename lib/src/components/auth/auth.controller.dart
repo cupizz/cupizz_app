@@ -1,7 +1,7 @@
 import 'package:cupizz_app/src/base/base.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
-import 'package:google_sign_in/google_sign_in.dart';
 import 'package:get/get_navigation/get_navigation.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
 import '../../app.dart';
 
@@ -62,29 +62,14 @@ class AuthController extends MomentumController<AuthModel> {
         unawaited(googleSignIn.signOut());
       } else if (type == SocialProviderType.facebook) {
         try {
-          var accessToken = await FacebookAuth.instance.login();
-          if (!accessToken.token.isExistAndNotEmpty) {
+          var result = await FacebookAuth.instance.login();
+          if (result.accessToken == null) {
             return;
           }
           await Get.find<AuthService>().loginSocial(
               SocialProviderType.facebook,
-              accessToken.token,
+              result.accessToken!.token,
               controller<CurrentUserController>().getCurrentUser);
-        } on FacebookAuthException catch (e) {
-          switch (e.errorCode) {
-            case FacebookAuthErrorCode.OPERATION_IN_PROGRESS:
-              print('Đang đăng nhập');
-              return;
-            case FacebookAuthErrorCode.CANCELLED:
-              print('login facebook cancelled');
-              return;
-            case FacebookAuthErrorCode.FAILED:
-              print('login facebook failed');
-              if (e.message != null) {
-                await Fluttertoast.showToast(msg: e.message!);
-              }
-              rethrow;
-          }
         } catch (e) {
           await Fluttertoast.showToast(msg: e.toString());
           rethrow;
@@ -123,8 +108,7 @@ class AuthController extends MomentumController<AuthModel> {
 
   Future<void> registerEmail() async {
     await trycatch(() async {
-      final otpToken =
-          await Get.find<AuthService>().registerEmail(model.email);
+      final otpToken = await Get.find<AuthService>().registerEmail(model.email);
       model.update(otpToken: otpToken);
     }, throwError: true);
   }
