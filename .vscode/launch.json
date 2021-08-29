@@ -17,6 +17,13 @@
             "type": "dart",
             "request": "launch",
             "program": "lib/main_local.dart"
+        },
+        {
+            "name": "Web",
+            "type": "dart",
+            "request": "launch",
+            "program": "lib/main.dart",
+            "args": ["-d", "chrome","--web-port", "5000"],
         }
     ]
 }

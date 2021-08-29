@@ -432,7 +432,7 @@ class _PhotoMainPageState extends State<PhotoMainPage>
       ),
     );
     if (handlePreviewResult(value)) {
-      // print(v);
+      // debugPrint(v);
 //      Navigator.pop(context, value);
       return;
     }

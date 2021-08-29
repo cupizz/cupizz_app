@@ -99,7 +99,7 @@ class OneSignalService extends GetxService {
       unawaited(OneSignal.shared.setExternalUserId(userId).then((_) =>
           log('Sent tags userId: $userId to OneSignal.', name: 'Onesignal')));
     } else {
-      print('subscribe onesignal on web');
+      debugPrint('subscribe onesignal on web');
       js.context.callMethod('customOneSignalSetExternalUserId', [userId]);
     }
   }

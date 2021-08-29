@@ -397,8 +397,8 @@ class LikeButtonState extends State<LikeButton> with TickerProviderStateMixin {
   }
 
   void _handleIsLikeChanged(bool? isLiked) {
-    print('isLiked $isLiked');
-    print('_isLiked $_isLiked');
+    debugPrint('isLiked $isLiked');
+    debugPrint('_isLiked $_isLiked');
     if (_isLiked) {
       if (_likeCount != null) {
         _preLikeCount = _likeCount;
