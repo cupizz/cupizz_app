@@ -74,6 +74,8 @@ dependencies:
   flutter_parsed_text:
   collection: ^1.15.0-nullsafety.4
 
+  sentry: ^5.1.0
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

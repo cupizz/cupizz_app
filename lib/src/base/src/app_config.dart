@@ -9,7 +9,8 @@ class AppConfig extends InheritedWidget {
   final String wss;
   static final GlobalKey<NavigatorState> navigatorKey =
       GlobalKey<NavigatorState>();
-  // final SentryClient sentry;
+
+  final SentryClient? sentry;
 
   bool get isDev => flavorName == AppFlavor.DEVELOPMENT;
 
@@ -19,14 +20,14 @@ class AppConfig extends InheritedWidget {
     required String apiUrl,
     required String wss,
     required Widget child,
-    // required SentryClient sentry,
+    required SentryClient? sentry,
   }) =>
       _instance = AppConfig._(
         apiUrl: apiUrl,
         appName: appName,
         flavorName: flavorName,
         wss: wss,
-        // sentry: sentry,
+        sentry: sentry,
         child: child,
       );
 
@@ -36,7 +37,7 @@ class AppConfig extends InheritedWidget {
     required this.apiUrl,
     required this.wss,
     required Widget child,
-    // this.sentry,
+    this.sentry,
   }) : super(child: Material(child: child)) {
     // FlutterError.onError = (FlutterErrorDetails details) {
     //   if (isDev || kIsWeb) {
@@ -54,14 +55,14 @@ class AppConfig extends InheritedWidget {
     String? apiUrl,
     String? wss,
     Widget? child,
-    // SentryClient? sentry,
+    SentryClient? sentry,
   }) {
     _instance = AppConfig(
       appName: appName ?? this.appName,
       flavorName: flavorName ?? this.flavorName,
       apiUrl: apiUrl ?? this.apiUrl,
       wss: wss ?? this.wss,
-      // sentry: sentry,
+      sentry: sentry,
       child: child ?? this.child,
     );
     return _instance;
