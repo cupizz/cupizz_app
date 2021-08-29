@@ -18,7 +18,7 @@ class ChatPage extends StatefulWidget {
 }
 
 class _ChatPageState extends State<ChatPage>
-    with LoadmoreMixin, KeepScrollOffsetMixin {
+    with LoadmoreMixin, KeepScrollOffsetMixin, AutomaticKeepAliveClientMixin {
   static double _lastOffset = 0;
 
   @override
@@ -28,6 +28,9 @@ class _ChatPageState extends State<ChatPage>
   set lastOffset(double value) {
     _ChatPageState._lastOffset = value;
   }
+
+  @override
+  bool get wantKeepAlive => true;
 
   final GlobalKey<CustomAnimatedListState> _key =
       GlobalKey<CustomAnimatedListState>();
@@ -57,6 +60,7 @@ class _ChatPageState extends State<ChatPage>
 
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     return RefreshIndicator(
       onRefresh: () async {
         await Momentum.controller<ChatPageController>(context).refresh();
@@ -66,7 +70,7 @@ class _ChatPageState extends State<ChatPage>
         child: MomentumBuilder(
             controllers: [ChatPageController],
             builder: (context, snapshot) {
-              final model = snapshot<ChatPageModel>()!;
+              final model = snapshot<ChatPageModel>();
               return Column(
                 children: <Widget>[
                   buildHeadingBar(context),
@@ -166,7 +170,7 @@ class _ChatPageState extends State<ChatPage>
                 controllers: [ChatPageController],
                 builder: (context, snapshot) {
                   final unreadMessageCount =
-                      snapshot<ChatPageModel>()?.unreadMessageCount ?? 0;
+                      snapshot<ChatPageModel>().unreadMessageCount ?? 0;
                   return buildBadge(unreadMessageCount);
                 })
           ],

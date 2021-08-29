@@ -6,7 +6,6 @@ import 'package:cupizz_app/src/components/location/location.controller.dart';
 import 'package:cupizz_app/src/screens/answer_question/answer_question_screen.dart';
 import 'package:cupizz_app/src/screens/answer_question/edit_answer_screen.dart';
 import 'package:cupizz_app/src/screens/main/pages/friend_v2/friend_page_v2.dart';
-import 'package:cupizz_app/src/screens/main/pages/post/components/post_page.controller.dart';
 import 'package:cupizz_app/src/screens/select_question/select_question_screen.dart';
 // import 'package:firebase_analytics/firebase_analytics.dart';
 // import 'package:firebase_analytics/observer.dart';
@@ -25,6 +24,7 @@ import 'widgets/index.dart';
 Momentum momentum({bool isTesting = false}) {
   return Momentum(
     key: UniqueKey(),
+    enableLogging: true,
     maxTimeTravelSteps: 200,
     restartCallback: () {
       runApp(AppConfig.instance.copyWith(child: App()));
@@ -34,7 +34,7 @@ Momentum momentum({bool isTesting = false}) {
       AnswerQuestionScreenController()..config(lazy: true),
       AuthController(),
       CurrentUserController(),
-      ChatPageController()..config(lazy: true),
+      ChatPageController(),
       EditAnswerScreenController()..config(lazy: true),
       ForgotController(),
       FriendPageController()..config(lazy: true),
@@ -47,7 +47,6 @@ Momentum momentum({bool isTesting = false}) {
       UserScreenController(),
       SelectQuestionScreenController(),
       SystemController(),
-      PostPageController()..config(lazy: true),
       CreatePostController()..config(lazy: true),
       AnonymousChatController()..config(lazy: true),
       CallController()..config(lazy: true),
@@ -132,7 +131,7 @@ class _MyApp extends StatelessWidget {
     return MomentumBuilder(
         controllers: [ThemeController, AuthController],
         builder: (context, snapshot) {
-          final theme = snapshot<ThemeModel>()!.controller.selectedTheme;
+          final theme = snapshot<ThemeModel>().controller.selectedTheme;
           return GetMaterialApp(
             debugShowCheckedModeBanner:
                 AppConfig.instance.flavorName != AppFlavor.PRODUCTION,

@@ -6,8 +6,8 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-  double width = 190.0;
-  double widthIcon = 200.0;
+  double width = 0.52;
+  double widthIcon = 0.45;
   final TextEditingController email = TextEditingController();
   final TextEditingController password = TextEditingController();
   final FocusNode emailFocus = FocusNode();
@@ -48,13 +48,13 @@ class _LoginScreenState extends State<LoginScreen> {
                 await controller.verifyOtp(otp);
               },
             ).then((v) {
-              if (controller.model!.data != null) {
+              if (controller.model.data != null) {
                 ChangePassDialog.show(
                   context,
-                  avatar: controller.model!.data?.avatar?.thumbnail,
-                  nickName: controller.model!.data?.nickName,
+                  avatar: controller.model.data?.avatar?.thumbnail,
+                  nickName: controller.model.data?.nickName,
                   requireOldPass: false,
-                  isLoading: controller.model!.isChangingPass,
+                  isLoading: controller.model.isChangingPass,
                   onSend: (oldPass, newPass) async {
                     await controller.changePass(newPass);
                   },
@@ -74,7 +74,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
   Future<void> _onLogin() async {
     if (formKey.currentState!.validate()) {
-      final authCtl = Momentum.of<AuthController>(context);
+      final authCtl = Momentum.controller<AuthController>(context);
       try {
         await authCtl.loginEmail(email.text, password.text);
       } catch (e) {
@@ -94,13 +94,13 @@ class _LoginScreenState extends State<LoginScreen> {
         .then((_) {
       Future.delayed(Duration(milliseconds: 300), () {
         setState(() {
-          width = 190;
-          widthIcon = 200;
+          width = 0.52;
+          widthIcon = 0.45;
         });
       });
     });
     setState(() {
-      width = 400.0;
+      width = 0.7;
       widthIcon = 0;
     });
   }
@@ -111,8 +111,8 @@ class _LoginScreenState extends State<LoginScreen> {
     return MomentumBuilder(
         controllers: [AuthController, ForgotController],
         builder: (context, snapshot) {
-          final model = snapshot<AuthModel>()!;
-          final modelForgot = snapshot<ForgotPassModel>()!;
+          final model = snapshot<AuthModel>();
+          final modelForgot = snapshot<ForgotPassModel>();
           return PrimaryScaffold(
             isLoading: model.isLoading ?? modelForgot.isSendingOtp ?? false,
             body: SingleChildScrollView(
@@ -222,7 +222,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: <Widget>[
                       AnimatedContainer(
-                        width: widthIcon,
+                        width: widthIcon * size.width,
                         duration: Duration(seconds: 1),
                         curve: Curves.linear,
                         child: Row(
@@ -245,7 +245,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         onTap: _onGoToRegister,
                         child: AnimatedContainer(
                           height: 65.0,
-                          width: width,
+                          width: width * size.width,
                           duration: Duration(milliseconds: 1000),
                           curve: Curves.linear,
                           decoration: BoxDecoration(

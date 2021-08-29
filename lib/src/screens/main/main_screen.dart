@@ -1,7 +1,6 @@
 library main_screen;
 
 import 'package:badges/badges.dart';
-import 'package:extended_tabs/extended_tabs.dart';
 import 'package:flutter/material.dart' hide Router;
 
 import '../../base/base.dart';
@@ -43,7 +42,7 @@ class _MainScreenState extends MomentumState<MainScreen>
         _tabController = TabController(
           length: _tabs.length,
           vsync: this,
-          initialIndex: _screenController.model!.currentTabIndex!,
+          initialIndex: _screenController.model.currentTabIndex!,
         );
       });
 
@@ -56,15 +55,14 @@ class _MainScreenState extends MomentumState<MainScreen>
   @override
   Widget build(BuildContext context) {
     final currentUser =
-        Momentum.controller<CurrentUserController>(context).model!.currentUser;
+        Momentum.controller<CurrentUserController>(context).model.currentUser;
     return PrimaryScaffold(
       body: _tabController == null
           ? const SizedBox.shrink()
           : MomentumBuilder(
               controllers: [MainScreenController],
               builder: (context, snapshot) {
-                return ExtendedTabBarView(
-                  cacheExtent: _tabs.length,
+                return TabBarView(
                   physics: [0, 2].contains(_tabController!.index)
                       ? NeverScrollableScrollPhysics()
                       : BouncingScrollPhysics(),
@@ -85,8 +83,8 @@ class _MainScreenState extends MomentumState<MainScreen>
             child: MomentumBuilder(
                 controllers: [MainScreenController, SystemController],
                 builder: (context, snapshot) {
-                  final model = snapshot<MainScreenModel>()!;
-                  final systemModel = snapshot<SystemModel>()!;
+                  final model = snapshot<MainScreenModel>();
+                  final systemModel = snapshot<SystemModel>();
                   return GNav(
                       gap: 8,
                       activeColor: context.colorScheme.onBackground,

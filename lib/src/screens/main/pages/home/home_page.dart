@@ -28,12 +28,17 @@ class HomePage extends StatefulWidget {
   _HomePageState createState() => _HomePageState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _HomePageState extends State<HomePage>
+    with AutomaticKeepAliveClientMixin {
   final _drawerController = OptionsDrawerController();
   final _cardController = CCardController();
 
   @override
+  bool get wantKeepAlive => true;
+
+  @override
   Widget build(BuildContext context) {
+    super.build(context);
     return PrimaryScaffold(
       body: LayoutBuilder(builder: (context, constraints) {
         return SizedBox(
@@ -61,7 +66,7 @@ class _HomePageState extends State<HomePage> {
     return MomentumBuilder(
         controllers: [RecommendableUsersController],
         builder: (context, snapshot) {
-          var model = snapshot<RecommendableUsersModel>()!;
+          var model = snapshot<RecommendableUsersModel>();
           if (model.users.isExistAndNotEmpty) {
             return Positioned(
               bottom: 10,
@@ -114,11 +119,11 @@ class _HomePageState extends State<HomePage> {
     return MomentumBuilder(
         controllers: [RecommendableUsersController],
         builder: (context, snapshot) {
-          var model = snapshot<RecommendableUsersModel>()!;
+          var model = snapshot<RecommendableUsersModel>();
           if (model.isLoading ||
               !model.users.isExistAndNotEmpty && !model.isLastPage) {
             if (!model.users.isExistAndNotEmpty && !model.isLastPage) {
-              Momentum.of<RecommendableUsersController>(context)
+              Momentum.controller<RecommendableUsersController>(context)
                   .fetchRecommendableUsers();
             }
             return Center(child: LoadingIndicator());
@@ -126,7 +131,7 @@ class _HomePageState extends State<HomePage> {
             return ErrorIndicator(
               moreErrorDetail: model.error,
               onReload: () {
-                Momentum.of<RecommendableUsersController>(context)
+                Momentum.controller<RecommendableUsersController>(context)
                     .fetchRecommendableUsers();
               },
             );

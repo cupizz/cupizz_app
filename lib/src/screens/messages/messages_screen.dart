@@ -51,7 +51,7 @@ class _MessagesScreenState extends State<MessagesScreen> {
     return MomentumBuilder(
         controllers: [MessagesScreenController],
         builder: (context, snapshot) {
-          final model = snapshot<MessagesScreenModel>()!;
+          final model = snapshot<MessagesScreenModel>();
           return PrimaryScaffold(
             appBar: AppBar(
               automaticallyImplyLeading: true,
@@ -115,18 +115,18 @@ class _MessagesScreenState extends State<MessagesScreen> {
                   ),
                 ),
               ),
-              actions: [
-                if (model.conversation != null)
-                  IconButton(
-                      icon: Icon(
-                        CupertinoIcons.videocam_fill,
-                        color: context.colorScheme.onBackground,
-                      ),
-                      onPressed: () {
-                        Momentum.controller<CallController>(context)
-                            .call(conversation: model.conversation);
-                      }),
-              ],
+              // actions: [
+              //   if (model.conversation != null)
+              //     IconButton(
+              //         icon: Icon(
+              //           CupertinoIcons.videocam_fill,
+              //           color: context.colorScheme.onBackground,
+              //         ),
+              //         onPressed: () {
+              //           Momentum.controller<CallController>(context)
+              //               .call(conversation: model.conversation);
+              //         }),
+              // ],
             ),
             body: MessagesScreenWidget(),
           );
@@ -145,7 +145,7 @@ class _MessagesScreenWidgetState extends State<MessagesScreenWidget> {
     return MomentumBuilder(
         controllers: [MessagesScreenController],
         builder: (context, snapshot) {
-          final model = snapshot<MessagesScreenModel>()!;
+          final model = snapshot<MessagesScreenModel>();
           return DashChat(
             inverted: true,
             shouldShowLoadEarlier:
@@ -153,7 +153,7 @@ class _MessagesScreenWidgetState extends State<MessagesScreenWidget> {
             dateFormat: DateFormat('dd/MM/yyyy'),
             timeFormat: DateFormat('HH:mm'),
             user: Momentum.controller<CurrentUserController>(context)
-                .model!
+                .model
                 .currentUser,
             messages: model.isLoading
                 ? List.generate(20, (index) => null)
