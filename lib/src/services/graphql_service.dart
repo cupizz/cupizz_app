@@ -74,10 +74,10 @@ class GraphqlService extends GetxService {
         } else if (clientError != null) {
           throw clientError.message;
         } else {
-          // unawaited(AppConfig.instance.sentry?.captureException(
-          //   result.exception.graphqlErrors[0].message,
-          //   stackTrace: result.exception,
-          // ));
+          unawaited(AppConfig.instance.sentry?.captureException(
+            result.exception?.graphqlErrors[0].message,
+            stackTrace: result.exception,
+          ));
           debugPrint(result.exception!.graphqlErrors[0].message.toString());
           throw 'Xảy ra lỗi!\nVui lòng liên hệ NPH để được hỗ trợ!';
         }

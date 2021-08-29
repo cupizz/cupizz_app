@@ -74,6 +74,8 @@ dependencies:
   collection: ^1.15.0-nullsafety.4
   js: ^0.6.2
 
+  sentry: ^5.1.0
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

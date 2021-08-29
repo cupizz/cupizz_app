@@ -13,6 +13,7 @@ void main() async {
     apiUrl: 'http://$hostServer:1998/graphql',
     wss: 'ws://$hostServer:1998/graphql',
     child: App(),
+    sentry: null,
   );
 
   objectMapping();

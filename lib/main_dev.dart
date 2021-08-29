@@ -12,6 +12,7 @@ void main() async {
     apiUrl: 'https://dev.cupizz.cf/graphql',
     wss: 'ws://dev.cupizz.cf/graphql',
     child: App(),
+    sentry: null,
   );
 
   objectMapping();
