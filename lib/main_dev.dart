@@ -11,8 +11,8 @@ void main() async {
     flavorName: AppFlavor.DEVELOPMENT,
     apiUrl: 'https://dev.cupizz.cf/graphql',
     wss: 'ws://dev.cupizz.cf/graphql',
-    child: App(),
     sentry: null,
+    child: App(),
   );
 
   objectMapping();

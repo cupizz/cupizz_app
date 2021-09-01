@@ -12,8 +12,8 @@ void main() async {
     flavorName: AppFlavor.DEVELOPMENT,
     apiUrl: 'http://$hostServer:1998/graphql',
     wss: 'ws://$hostServer:1998/graphql',
-    child: App(),
     sentry: null,
+    child: App(),
   );
 
   objectMapping();
