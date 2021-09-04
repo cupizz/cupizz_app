@@ -48,7 +48,6 @@ class AuthController extends MomentumController<AuthModel> {
           scopes: <String>[
             'email',
             'profile',
-            'https://www.googleapis.com/auth/contacts.readonly'
           ],
         );
         await googleSignIn.signIn();
@@ -56,7 +55,6 @@ class AuthController extends MomentumController<AuthModel> {
         GoogleSignInAuthentication auth;
         auth = await googleSignIn.currentUser!.authentication;
         final tokenGoogle = auth.accessToken;
-        debugPrint('Token Google: $tokenGoogle');
         await Get.find<AuthService>().loginSocial(type, tokenGoogle,
             controller<CurrentUserController>().getCurrentUser);
         unawaited(googleSignIn.signOut());

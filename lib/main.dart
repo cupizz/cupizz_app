@@ -14,8 +14,8 @@ void main() async {
   var configuredApp = AppConfig(
     appName: 'Cupizz Production',
     flavorName: AppFlavor.PRODUCTION,
-    apiUrl: 'https://cupizz.cf/graphql',
-    wss: 'wss://cupizz.cf/graphql',
+    apiUrl: 'https://cupizz.com/graphql',
+    wss: 'wss://cupizz.com/graphql',
     sentry: kIsWeb
         ? null
         : SentryClient(SentryOptions(
